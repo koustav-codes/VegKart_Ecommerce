@@ -1,4 +1,5 @@
 const {schema, model} = require ('mongoose');
+const bcrypt = require ('bcrypt');
 
 const userSchema = new Schema({
     name: {
@@ -26,8 +27,30 @@ const userSchema = new Schema({
     password: {
         type: String,
         required: [true, 'Password is required'],
-        minlength: [6, 'Password must be at least 6 characters long']
-    }
-});
+        minlength: [6, 'Password must be at least 6 characters long'],
+        set : (v) => bcrypt.hashSync(v, bcrypt.genSaltSync(10))
+    },
+    image: {
+        type: String,
+        default: 
+    },
+    address: {
+        type: String,
+        required: [true, 'User Address Required'],
+    },
+    phone: {
+        type: String,
+        required: [true, 'Phone Number Required'],
+    },
+    isAdmin: {
+        type: Boolean,
+        default: false,
+    },
+    isBanned: {
+        type: Boolean,
+        default: false,
+    }, {timestamp : true});
+
+const User = model('Users', userSchema)
 
 module.exports = mongoose.model('User', userSchema);
