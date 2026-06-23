@@ -13,3 +13,4 @@
 10. MVC Architecture
 11. Connect MongoDB database
 12. Schema and Model for User
+13. Create seed route for data seeding
