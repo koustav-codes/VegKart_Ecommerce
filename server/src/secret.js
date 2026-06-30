@@ -5,4 +5,6 @@ const mongodbURL = process.env.MONGODB_ATLAS_URL || 'mongodb://localhost:27017/e
 
 const defaultImagePath = process.env.DEFAULT_IMAGE_PATH || 'public/images/users/default.png';
 
+console.log(process.env.MONGODB_ATLAS_URL);
+
 module.exports = {serverPort, mongodbURL, defaultImagePath};

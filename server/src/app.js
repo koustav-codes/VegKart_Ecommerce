@@ -3,6 +3,7 @@ const morgan = require('morgan');
 const createError = require('http-errors');
 const rateLimit = require('express-rate-limit');
 const userRouter = require('./routers/userRouter');
+const seedRouter = require('./routers/seedRouter');
 const app = express()
 
 const rateLimiter = rateLimit({
@@ -28,7 +29,8 @@ app.use(express.urlencoded({extended:true}))
 //     console.log('isLoggedIn Middleware');
 // }
 
-app.use("/api/user", userRouter)
+app.use("/api/user", userRouter);
+app.use("/api/seed", seedRouter);
 
 app.get("/test", (req, res) => {
     res.status(200).send({message:"GET: API is Working Fine"});
